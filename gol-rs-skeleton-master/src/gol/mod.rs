@@ -4,7 +4,7 @@ use crate::gol::event::Event;
 use crate::gol::io::{start_io, IoChannels};
 use anyhow::Result;
 use flume::{Receiver, Sender};
-use log::Cell;
+// use log::Cell;
 use io::IoCommand;
 use sdl2::keyboard::Keycode;
 use crate::util::cell::CellValue;
