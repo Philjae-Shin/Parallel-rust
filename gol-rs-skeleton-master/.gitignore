@@ -1,0 +1,9 @@
+target/
+.idea/
+.vscode/
+.fleet/
+out/
+Cargo.lock
+**/*.rs.bk
+.DS_Store
+SDL2.dll
