@@ -1,5 +1,3 @@
-// distributor.rs
-
 use crate::gol::event::{Event, State};
 use crate::gol::Params;
 use crate::gol::io::IoCommand;
@@ -47,7 +45,6 @@ pub fn distributor(params: Params, mut channels: DistributorChannels) -> Result<
     let threads = params.threads;
     let height_usize = height;
 
-    // 각 스레드가 처리할 행 수를 계산합니다.
     let rows_per_thread = height_usize / threads;
     let extra_rows = height_usize % threads;
 
@@ -127,7 +124,7 @@ pub fn distributor(params: Params, mut channels: DistributorChannels) -> Result<
 
         if !flipped_cells.is_empty() {
             events.send(Event::CellsFlipped {
-                completed_turns: turn, // turn은 u32
+                completed_turns: turn,
                 cells: flipped_cells,
             })?;
         }
@@ -154,7 +151,7 @@ pub fn distributor(params: Params, mut channels: DistributorChannels) -> Result<
     };
 
     events.send(Event::FinalTurnComplete {
-        completed_turns: turns, // turns는 u32
+        completed_turns: turns,
         alive: alive_cells,
     })?;
 
@@ -162,7 +159,7 @@ pub fn distributor(params: Params, mut channels: DistributorChannels) -> Result<
     io_idle.recv()?;
 
     events.send(Event::StateChange {
-        completed_turns: turns, // turns는 u32
+        completed_turns: turns,
         new_state: State::Quitting,
     })?;
 
